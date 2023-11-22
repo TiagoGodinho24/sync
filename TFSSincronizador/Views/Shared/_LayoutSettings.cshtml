@@ -1,0 +1,58 @@
+﻿<style>
+        /*CSS for the title*/
+        .title{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        /* CSS for the navbar */
+        .CNnav {
+            font-family: "Arial", sans-serif;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid cornflowerblue; 
+            margin-bottom: 20px;
+        }
+
+        .CNavul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .CNavli {
+           margin: 0 50px;
+        }
+
+        a {
+            text-decoration: none;
+            color: grey; 
+        }
+
+        a:hover {
+            color: cornflowerblue; 
+        }
+
+        .CNavli a.active {
+        color: cornflowerblue;
+        }
+
+
+</style>
+
+<h1 class="title">Edit Profile</h1>
+
+<nav class="CNnav">
+    <ul class="CNavul">
+        <li class="CNavli">
+            <a  asp-area="" asp-controller="Profile" asp-action="Edit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Edit" ? "active" : "")">Connection</a>
+        </li>
+
+        <li class="CNavli">
+            <a asp-area="" asp-controller="Profile" asp-action="EditMapping" class="@(ViewContext.RouteData.Values["Action"].ToString() == "EditMapping" || ViewContext.RouteData.Values["Action"].ToString() == "StatesStatuses" || ViewContext.RouteData.Values["Action"].ToString() == "Types" || ViewContext.RouteData.Values["Action"].ToString() == "Fields" ? "active" : "" )">Mappings</a>
+        </li>
+    </ul>
+</nav>

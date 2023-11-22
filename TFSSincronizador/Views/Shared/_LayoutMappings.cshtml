@@ -1,0 +1,63 @@
+﻿<style>
+        /* Additional CSS for the navbar */
+        .Cnav {
+            font-family: "Arial", sans-serif; /* Set font to Arial */
+            border-right: 1px solid #000; /* Add a line to the right of the navbar */
+            height: 30vh; /* Set the height of the navbar to full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 50px; /* Add some padding at the top */
+        }
+
+        .Cul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .Cli {
+            margin-bottom: 20px; /* Add vertical spacing between list items */
+            position: relative; /* Set position to relative for positioning the lines */
+        }
+
+        a {
+            text-decoration: none;
+            color: grey; /* Set text color to grey */
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: grey; /* Add line color */
+            left: 0;
+            bottom: -5px; /* Position the line below the title */
+        }
+
+        .Cli a.active {
+        color: cornflowerblue;
+        }
+
+
+</style>
+
+
+            <nav class="Cnav">
+                <ul class="Cul">
+                    <li class="Cli">
+                       <a asp-area="" asp-controller="Profile" asp-action="EditMapping" class="@(ViewContext.RouteData.Values["Action"].ToString() == "EditMapping" ? "active" : "")">Basic Settings</a>
+                    </li>
+                    <li class="Cli">
+                       <a asp-area="" asp-controller="Profile" asp-action="Types" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Types" ? "active" : "")">Types</a>                    
+                    </li>
+                    <li class="Cli">
+                       <a asp-area="" asp-controller="Profile" asp-action="StatesStatuses" class="@(ViewContext.RouteData.Values["Action"].ToString() == "StatesStatuses" ? "active" : "")">States Statuses</a> 
+                    </li>
+                    <li class="Cli">
+                       <a asp-area="" asp-controller="Profile" asp-action="Fields" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Fields" ? "active" : "")">Fields</a>
+                    </li>
+                </ul>
+            </nav>
+        

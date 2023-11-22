@@ -1,0 +1,116 @@
+﻿@model IEnumerable<TFSSincronizador.Models.Profile>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileList</title>
+        <style>
+        
+        .title{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .ButtonCreate {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            background-color: #e8a757; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+
+        .ButtonCreate:hover {
+            background-color: #d18f4f; 
+            color: black;
+        }
+
+
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:first-child {
+            background-color: white; 
+        }
+
+        
+        tr:nth-child(even) {
+            background-color: #e8a757;
+        }
+
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        .tableA{
+            color: black;
+        }
+
+        .tableA:hover{
+            color: red;
+        }
+        </style>
+</head>
+<body>
+<h1 class="title">Profile List</h1>
+
+<p>
+    <a class="ButtonCreate" asp-action="Create"> New Profile </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a class="tableA" asp-action="Edit" asp-route-id="@item.ProfileId">Edit</a> |
+                <a class="tableA" asp-action="Details" asp-route-id="@item.ProfileId">Details</a> |
+                <a class="tableA" asp-action="Delete" asp-route-id="@item.ProfileId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</body>

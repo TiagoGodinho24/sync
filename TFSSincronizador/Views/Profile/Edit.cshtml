@@ -1,0 +1,178 @@
+﻿@model TFSSincronizador.Models.Profile
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileEdit</title>
+        <style>
+        /*Title CSS*/
+        .title{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .title1{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        /*Create button CSS */
+        .ButtonSave {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            background-color: #e8a757; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ButtonSave:hover {
+            background-color: #d18f4f; 
+            color: black;
+        }
+
+
+        </style>
+</head>
+
+<partial name="_LayoutSettings"/>
+
+<br />
+<div class="container">
+    <div class="row justify-content-center"> 
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                     <form asp-action="Edit">
+                            
+                                
+                            <h4 class="title1">General Settings</h4>
+                            <hr />
+                            <br />    
+                            <div class="col-sm-7">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="ProfileId" />
+                                    <div class="form-group">
+                                        <label asp-for="ProfileName" class="control-label"></label>
+                                        <input asp-for="ProfileName" class="form-control" />
+                                        <span asp-validation-for="ProfileName" class="text-danger"></span>
+                                        <br />
+                                    </div>                                   
+                            </div>
+                                
+
+                                
+                            <div class="form-group1">
+
+                                <h4 class="title1">Jira Configuration</h4>
+                                <hr />
+                                <br />
+                               
+                                <div class="col-sm-7">
+                               
+                                <label for="JiraUrl" class="control-label">Url: </label>
+                                <input type="text" for="JiraUrl" class="form-control" /><br />
+
+                                
+                                <label for="Email" class="control-label">Email Address: </label>
+                                <input type="email" for="Email" class="form-control" /><br />
+
+                                <label for="ApiToken" class="control-label">Api Token: </label>
+                                <input type="text" for="ApiToken" class="form-control" /><br />
+                            
+                                <label for="Project">Project</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Zero</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select><br />
+
+                                <label for="TFSCustom">TFS Custom Field</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Zero</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select><br />
+                                </div>
+                                </center>
+                            </div>
+
+                            <div class="form-group2">
+
+                                <h4 class="title1">TFS Configuration</h4>
+                                <hr />
+                                <br />    
+                            
+                                <div class="col-sm-7">
+
+                                <label for="TFSUrl" class="control-label">Url: </label>
+                                <input type="text" for="TFSUrl" class="form-control" /><br />
+
+                                <label for="User" class="control-label">User Name </label>
+                                <input type="text" for="User" class="form-control" /><br />
+
+                                <label for="Pass" class="control-label">Url: </label>
+                                <input type="password" for="Pass" class="form-control" /><br />
+
+                                <label for="Domain" class="control-label">Domain: </label>
+                                <input type="text" for="Domain" class="form-control" /><br />
+
+                                <label for="ProjectC">Project Collection</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Zero</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select><br />
+
+                                <label for="Project">Project</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Zero</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select><br />
+
+                                 <label for="CustomField">Custom Field Name to store Jira Issue Key:</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Zero</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select><br />
+
+                                </div>
+                            
+                            </div>
+
+                            <div class="form-group3">
+                                <input type="submit" value="Save" class="ButtonSave" />
+                            </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,216 @@
+﻿<head>
+     <style>
+
+        .select-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .select-box {
+            width: 200px;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin-right: 20px;
+        }
+
+        table.mapping-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table.mapping-table th {
+            border-bottom: 2px solid orange;
+            color: darkorange;
+            
+        }
+
+        table.mapping-table td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table.mapping-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: darkorange;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: darkorange;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        .select-title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<partial name="_LayoutSettings" />
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <aside>
+                <partial name="_LayoutMappings" />
+            </aside>
+        </div>
+        <div class="col-md-8">
+            
+                <h5> Mapping Mode </h5>
+                <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Copy Value
+                      </label>
+                </div>
+
+                <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Map Values
+                      </label>
+                </div>
+                <br />
+
+                <h5> Mapping Direction</h5> 
+
+                <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        TFS to Jira
+                      </label>
+                </div>
+
+                <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Jira to TFS
+                      </label>
+                </div>
+
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Both Directions
+                      </label>
+                </div>
+                <br />
+        
+                <table style="margin: auto;">
+                    <tr>
+                        <td>
+                            <div class="select-container">
+                   
+                                <div class="select-title">Jira Values</div>
+                                <select multiple size="5" class="select-box" id="JiraSelect" onchange="updateSelect('JiraSelect', 'tfsSelect')" >
+                                    <option value="1">Jira Value 1</option>
+                                    <option value="2">Jira Value 2</option>
+                                    <option value="3">Jira Value 3</option>
+                                    <option value="4">Jira Value 4</option>
+                                    <option value="5">Jira Value 5</option>
+                        
+                                </select>
+                            </div>
+                        </td>
+                          <td style="width: 100px; text-align: center;">
+                            <div class="button-container">
+                                <button onclick="mapValues()">Map</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="select-container">
+                    
+                                <div class="select-title">TFS Values</div>
+                                <select multiple size="5" class="select-box" id="TFSSelect" onchange="updateSelect('TFSSelect', 'JiraSelect')">
+                                    <option value="1">TFS Value 1</option>
+                                    <option value="2">TFS Value 2</option>
+                                    <option value="3">TFS Value 3</option>
+                                    <option value="4">TFS Value 4</option>
+                                    <option value="5">TFS Value 5</option>
+                        
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+               
+
+                <table class="mapping-table" id="mappingTable">
+                    <tr>
+                        <th>Jira Values</th>
+                        <th>TFS Values</th>
+                        <th></th>
+                    </tr>
+                </table>
+            <br />
+        </div>
+    </div>
+</div>
+
+<script>
+    function mapValues() {
+        var jiraSelect = document.getElementById('JiraSelect');
+        var tfsSelect = document.getElementById('TFSSelect');
+        var mappingTable = document.getElementById('mappingTable');
+
+        var selectedJiraOptions = Array.from(jiraSelect.selectedOptions);
+        var selectedTfsOptions = Array.from(tfsSelect.selectedOptions);
+
+        selectedJiraOptions.forEach(option => {
+            var row = mappingTable.insertRow(-1);
+            var jiraCell = row.insertCell(0);
+            var tfsCell = row.insertCell(1);
+            var removeCell = row.insertCell(2);
+            jiraCell.innerHTML = option.text;
+            tfsCell.innerHTML = tfsSelect.options[tfsSelect.selectedIndex].text;
+            removeCell.innerHTML = '<button onclick="removeMapping(this)">X</button>';
+            jiraSelect.remove(jiraSelect.selectedIndex);
+        });
+
+        selectedTfsOptions.forEach(option => {
+            var rowIndex = mappingTable.rows.length - 1;
+            mappingTable.rows[rowIndex].cells[1].innerHTML = option.text;
+            tfsSelect.remove(tfsSelect.selectedIndex);
+        });
+    }
+
+    function removeMapping(button) {
+        var row = button.parentNode.parentNode;
+        var jiraValue = row.cells[0].innerHTML;
+        var tfsValue = row.cells[1].innerHTML;
+
+        var jiraSelect = document.getElementById('JiraSelect');
+        var tfsSelect = document.getElementById('TFSSelect');
+
+        var jiraOption = document.createElement('option');
+        jiraOption.text = jiraValue;
+        jiraSelect.add(jiraOption);
+
+        var tfsOption = document.createElement('option');
+        tfsOption.text = tfsValue;
+        tfsSelect.add(tfsOption);
+
+        row.parentNode.removeChild(row);
+    }
+</script>

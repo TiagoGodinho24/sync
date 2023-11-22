@@ -1,0 +1,191 @@
+﻿@model TFSSincronizador.Models.ProfileConfiguration
+
+@{
+    ViewData["Title"] = "CreateConfig";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileEdit</title>
+        <style>
+        
+        .title{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .title1{
+            font-family: Arial, sans-serif;
+            font-weight: 300; 
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ButtonCreate {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            background-color: #e8a757; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+
+
+        </style>
+</head>
+<h1 class="title">New Profile Configuration</h1>
+<br />
+<div class="container">
+    <div class="row justify-content-center"> 
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                     <form asp-action="CreateConfiguration" asp-controller="Profile" method="post">
+
+                                 
+                            <div class="form-group1">
+
+                                <h4 class="title1">Jira Configuration</h4>
+                                <hr />
+                                <br />
+
+                               
+                                <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label asp-for="JiraURL" class="control-label"></label>
+                                    <input asp-for="JiraURL" class="form-control" />
+                                    <span asp-validation-for="JiraURL" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="APIToken" class="control-label"></label>
+                                    <input asp-for="APIToken" class="form-control" />
+                                    <span asp-validation-for="APIToken" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Project" class="control-label"></label>
+                                     <select asp-for="Project" class="form-control">
+                                        <option selected>Zero</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <span asp-validation-for="Project" class="text-danger"></span>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label asp-for="CustomField" class="control-label"></label>
+                                     <select asp-for="CustomField" class="form-control">
+                                        <option selected>Zero</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <span asp-validation-for="CustomField" class="text-danger"></span>
+                                </div>
+
+                                
+                                </div>
+                               
+                            </div>
+
+                            <div class="form-group2">
+
+                                <h4 class="title1">TFS Configuration</h4>
+                                <hr />
+                                <br />    
+                            
+                                <div class="col-sm-7">
+                                
+                                <div class="form-group">
+                                    <label asp-for="TFSUrl" class="control-label"></label>
+                                    <input asp-for="TFSUrl" class="form-control" />
+                                    <span asp-validation-for="TFSUrl" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="PassWord" class="control-label"></label>
+                                    <input asp-for="PassWord" class="form-control" />
+                                    <span asp-validation-for="PassWord" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Domain" class="control-label"></label>
+                                    <input asp-for="Domain" class="form-control" />
+                                    <span asp-validation-for="Domain" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Collection" class="control-label"></label>
+                                     <select asp-for="Collection" class="form-control">
+                                        <option selected>Zero</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <span asp-validation-for="Collection" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="TFSProject" class="control-label"></label>
+                                     <select asp-for="TFSProject" class="form-control">
+                                        <option selected>Zero</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <span asp-validation-for="TFSProject" class="text-danger"></span>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <label asp-for="TFSCustom" class="control-label"></label>
+                                     <select asp-for="TFSCustom" class="form-control">
+                                        <option selected>Zero</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <span asp-validation-for="TFSCustom" class="text-danger"></span>
+                                </div>
+
+
+                                </div>
+                            
+                            </div>
+                        <div class="form-group">
+                             <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
